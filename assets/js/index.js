@@ -15,7 +15,7 @@ function createActorCard(actor){
 
   const initials = document.createElement('div');
   initials.classList.add('initials');
-  initials.append(document.createTextNode(actor.name[0] || 'noname'))
+  initials.append(document.createTextNode(getInitials(actor) || 'noname'))
   initials.style.backgroundColor = stringToColour(actor.name);
 
   const img = document.createElement('img');
@@ -41,6 +41,10 @@ function createActorCard(actor){
 }
 
 cardsContainer.append(...htmlElements);
+
+function getInitials({name}){
+  return name.split(' ').map((item)=> item[0]).join('');
+}
 
 function handlerImgHandler({target}){
   target.remove();
